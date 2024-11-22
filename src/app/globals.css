@@ -19,3 +19,8 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.container {
+  @apply max-w-7xl mx-auto px-1;
+  @apply flex flex-col max-h-screen;
+}
