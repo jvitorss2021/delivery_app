@@ -15,7 +15,7 @@ const Home: React.FC = () => {
           Produtos
         </a>
         <a
-          href="/carrinho"
+          href="/cart"
           className="bg-blue-500 text-white py-1.5 px-2.5 rounded hover:bg-blue-600"
         >
           Carrinho
