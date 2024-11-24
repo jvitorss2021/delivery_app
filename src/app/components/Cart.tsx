@@ -49,17 +49,17 @@ const Cart: React.FC = () => {
         ))}
       </ul>
       <div className="mt-8">
-        <h2 className="text-xl font-bold">Total: R$ {total.toFixed(2)}</h2>
-        <button className="bg-blue-500 text-white py-2 px-4 rounded mt-2 hover:bg-blue-600">
-          Finalizar Compra
-        </button>
-      </div>
-      <div className="mt-8">
         <button
           onClick={addExtraFries}
           className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
         >
           Adicionar Batata Frita
+        </button>
+      </div>
+      <div className="mt-8">
+        <h2 className="text-xl font-bold">Total: R$ {total.toFixed(2)}</h2>
+        <button className="bg-blue-500 text-white py-2 px-4 rounded mt-2 hover:bg-blue-600">
+          Finalizar Compra
         </button>
       </div>
     </div>

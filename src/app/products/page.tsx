@@ -1,5 +1,3 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 
 const Products: React.FC = () => {
@@ -14,7 +12,6 @@ const Products: React.FC = () => {
 
   return (
     <>
-      <Header />
       <main className="container mx-auto py-8 mb-8">
         <h1 className="text-2xl font-bold mb-4">Produtos</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -23,7 +20,6 @@ const Products: React.FC = () => {
           ))}
         </div>
       </main>
-      <Footer />
     </>
   );
 };

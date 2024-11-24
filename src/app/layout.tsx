@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "./context/CartContext";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "Flate Flame",
+  title: "Fat Flame",
   description: "O melhor lugar para pedir sua comida favorita!",
 };
 
@@ -14,8 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <CartProvider>{children}</CartProvider>
+      <body className="flex flex-col min-h-screen">
+        <CartProvider>
+          <Header />
+          <div className="flex-grow">{children}</div>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

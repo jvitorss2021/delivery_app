@@ -1,12 +1,8 @@
 import Image from "next/image";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 
 const Home: React.FC = () => {
   return (
     <>
-      <Header />
-
       <div className="relative w-full min-h-screen">
         <Image
           src="/images/FatFlame2.jpg"
@@ -23,8 +19,6 @@ const Home: React.FC = () => {
           O melhor lugar para pedir sua comida favorita!
         </h2>
       </div>
-
-      <Footer />
     </>
   );
 };
