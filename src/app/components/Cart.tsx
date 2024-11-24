@@ -4,7 +4,7 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 
 const Cart: React.FC = () => {
-  const { cartItems, removeItemFromCart } = useCart();
+  const { cartItems, addItemToCart, removeItemFromCart } = useCart();
 
   const total = cartItems.reduce(
     (acc, item) =>
@@ -13,6 +13,15 @@ const Cart: React.FC = () => {
         item.quantity,
     0
   );
+
+  const addExtraFries = () => {
+    addItemToCart({
+      id: 2,
+      name: "Batata Frita",
+      price: "R$ 12,00",
+      quantity: 1,
+    });
+  };
 
   return (
     <div className="container mx-auto py-8">
@@ -43,6 +52,14 @@ const Cart: React.FC = () => {
         <h2 className="text-xl font-bold">Total: R$ {total.toFixed(2)}</h2>
         <button className="bg-blue-500 text-white py-2 px-4 rounded mt-2 hover:bg-blue-600">
           Finalizar Compra
+        </button>
+      </div>
+      <div className="mt-8">
+        <button
+          onClick={addExtraFries}
+          className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+        >
+          Adicionar Batata Frita
         </button>
       </div>
     </div>

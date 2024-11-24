@@ -3,7 +3,7 @@ import "./globals.css";
 import { CartProvider } from "./context/CartContext";
 
 export const metadata: Metadata = {
-  title: "Delivery App",
+  title: "Flate Flame",
   description: "O melhor lugar para pedir sua comida favorita!",
 };
 
