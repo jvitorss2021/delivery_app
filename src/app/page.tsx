@@ -1,27 +1,31 @@
+import Image from "next/image";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 const Home: React.FC = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black-100">
-      <h1 className="text-3xl font-bold text-blue-500 mb-4">
-        Bem-vindo ao Delivery App 🚀
-      </h1>
-      <h2 className="text-xl mb-8">
-        O melhor lugar para pedir sua comida favorita!
-      </h2>
-      <div className="flex flex-row space-x-4">
-        <a
-          href="/products"
-          className="bg-blue-500 text-white py-1.5 px-2.5 rounded hover:bg-blue-600"
-        >
-          Produtos
-        </a>
-        <a
-          href="/cart"
-          className="bg-blue-500 text-white py-1.5 px-2.5 rounded hover:bg-blue-600"
-        >
-          Carrinho
-        </a>
+    <>
+      <Header />
+
+      <div className="relative w-full min-h-screen">
+        <Image
+          src="/images/FatFlame2.jpg"
+          alt="Logo"
+          layout="fill"
+          objectFit="cover"
+          className="z-0"
+        />
+
+        <h1 className="absolute inset-0 flex flex-col items-center justify-start text-center text-4xl font-bold text-amber-500 mb-4">
+          Bem-vindo ao Fat Flame Delivery!
+        </h1>
+        <h2 className="absolute inset-0 flex flex-col items-center justify-end text-center text-2xl text-amber-400">
+          O melhor lugar para pedir sua comida favorita!
+        </h2>
       </div>
-    </div>
+
+      <Footer />
+    </>
   );
 };
 
