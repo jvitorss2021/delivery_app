@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-gray-900 text-white py-4">
+    <header className="bg-gray-950 text-white ">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-4">
           <Image
@@ -13,8 +13,8 @@ const Header: React.FC = () => {
             className="rounded-full"
           />
         </div>
-        <nav>
-          <ul className="flex space-x-4">
+        <nav className="mb-3">
+          <ul className="flex space-x-4 ">
             <li>
               <a href="/" className="hover:underline">
                 Home
