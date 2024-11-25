@@ -15,14 +15,16 @@ const ProductCard: React.FC<ProductProps> = ({ id, name, price, image }) => {
 
   return (
     <div className="border rounded shadow-md p-4">
-      <Image
-        src={`/images/${image}`}
-        alt={name}
-        width={400}
-        height={160}
-        className="w-full h-40 object-cover rounded"
-        priority={true}
-      />
+      <div className="relative w-full h-40">
+        <Image
+          src={`/images/${image}`}
+          alt={name}
+          fill
+          style={{ objectFit: "cover" }}
+          className="rounded"
+          priority={true}
+        />
+      </div>
       <h2 className="text-lg font-bold mt-2">{name}</h2>
       <p className="text-gray-600">{price}</p>
       <button
