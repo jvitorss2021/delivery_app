@@ -2,11 +2,11 @@ import Cart from "../components/Cart";
 
 const CartPage: React.FC = () => {
   return (
-    <>
-      <main className="container mx-auto py-8">
+    <div className="flex flex-col bg-cover bg-center bg-[url('/images/fundo.jpg')] min-h-screen">
+      <main className="container mx-auto py-8 mb-8 bg-opacity-75 rounded-lg shadow-lg">
         <Cart />
       </main>
-    </>
+    </div>
   );
 };
 

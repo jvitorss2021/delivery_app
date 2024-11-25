@@ -28,9 +28,6 @@ body {
 body {
   display: flex;
   flex-direction: column;
-  background-image: url("/images/fundo.jpg");
-  background-size: cover;
-  background-position: center;
 }
 
 .container {
