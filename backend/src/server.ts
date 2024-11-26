@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import productRoutes from "./routes/product";
+import authRoutes from "./routes/auth";
 import { config } from "dotenv";
 import cors from "cors";
 
@@ -10,10 +11,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-
 app.use(cors());
+
 // Rotas
 app.use("/api/products", productRoutes);
+app.use("/api/auth", authRoutes);
 
 // Conexão com o Banco de Dados
 mongoose

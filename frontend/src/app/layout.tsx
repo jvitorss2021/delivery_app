@@ -16,9 +16,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preload" href="/images/fundo.jpg" as="image" />
-      </head>
       <body className="flex flex-col min-h-screen">
         <CartProvider>
           <Header />

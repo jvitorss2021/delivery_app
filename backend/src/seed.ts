@@ -12,7 +12,7 @@ const products = [
   { id: 5, name: "Poke", price: "R$ 35,00", image: "poke.webp" },
   { id: 6, name: "Salada", price: "R$ 12,00", image: "salad.webp" },
   { id: 7, name: "Tapioca", price: "R$ 18,00", image: "tapioca.webp" },
-  { id: 8, name: "Suco Natural", price: "R$ 8,00", image: "suco1.webp" },
+  { id: 8, name: "Suco Natural", price: "R$ 8,00", image: "juice.webp" },
   { id: 9, name: "Refrigerante lata", price: "R$ 6,00", image: "refri.webp" },
 ];
 

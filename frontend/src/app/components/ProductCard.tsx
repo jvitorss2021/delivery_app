@@ -20,6 +20,7 @@ const ProductCard: React.FC<ProductProps> = ({ id, name, price, image }) => {
           src={`/images/${image}`}
           alt={name}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           style={{ objectFit: "cover" }}
           className="rounded"
           priority={true}

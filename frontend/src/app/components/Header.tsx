@@ -17,8 +17,9 @@ const Header: React.FC = () => {
           <Image
             src="/images/logo.png"
             alt="Logo"
-            width={170}
-            height={170}
+            width={160}
+            height={160}
+            style={{ width: "auto", height: "auto" }}
             className="rounded-full"
           />
         </div>

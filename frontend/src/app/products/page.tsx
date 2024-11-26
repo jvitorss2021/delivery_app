@@ -37,7 +37,7 @@ const Products: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col bg-cover bg-center bg-[url('/images/fundo.jpg')] min-h-screen">
+    <div className="flex flex-col bg-cover bg-center bg-[url('/images/fundo.png')] min-h-screen">
       <main className="container mx-auto py-8 mb-8 bg-opacity-75 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Produtos</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
