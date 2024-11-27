@@ -1,16 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import AuthModal from "./AuthModal";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="bg-gray-950 text-white py-4">
@@ -25,7 +39,7 @@ const Header: React.FC = () => {
             className="rounded-full"
           />
         </div>
-        <div className="relative">
+        <div className="relative" ref={menuRef}>
           <button className="flex flex-col space-y-1.5" onClick={toggleMenu}>
             <span className="block w-6 h-0.5 bg-white"></span>
             <span className="block w-6 h-0.5 bg-white"></span>
