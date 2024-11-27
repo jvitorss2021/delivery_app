@@ -13,6 +13,7 @@ interface CartContextType {
   cartItems: CartItem[];
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (id: number) => void;
+  clearCart: () => void; // Adicione a função clearCart
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -53,9 +54,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
+  const clearCart = () => {
+    setCartItems([]); // Limpar o estado do carrinho
+    localStorage.removeItem("cartItems"); // Remover o carrinho do localStorage
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addItemToCart, removeItemFromCart }}
+      value={{ cartItems, addItemToCart, removeItemFromCart, clearCart }}
     >
       {children}
     </CartContext.Provider>
