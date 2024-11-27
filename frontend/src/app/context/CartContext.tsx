@@ -13,7 +13,10 @@ interface CartContextType {
   cartItems: CartItem[];
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (id: number) => void;
-  clearCart: () => void; // Adicione a função clearCart
+  decrementItemInCart: (id: number) => void; // Adicione a função decrementItemInCart
+  clearCart: () => void;
+  loadCart: () => void;
+  setCartItems: (items: CartItem[]) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -21,13 +24,13 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItemsState] = useState<CartItem[]>([]);
 
   // Carregar o estado do carrinho do localStorage quando o componente é montado
   useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems");
     if (storedCartItems) {
-      setCartItems(JSON.parse(storedCartItems));
+      setCartItemsState(JSON.parse(storedCartItems));
     }
   }, []);
 
@@ -37,7 +40,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [cartItems]);
 
   const addItemToCart = (item: CartItem) => {
-    setCartItems((prev) => {
+    setCartItemsState((prev) => {
       const itemExists = prev.find((cartItem) => cartItem.id === item.id);
       if (itemExists) {
         return prev.map((cartItem) =>
@@ -51,17 +54,48 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const removeItemFromCart = (id: number) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    setCartItemsState((prevItems) =>
+      prevItems.filter((item) => item.id !== id)
+    );
+  };
+
+  const decrementItemInCart = (id: number) => {
+    setCartItemsState((prevItems) =>
+      prevItems
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
   };
 
   const clearCart = () => {
-    setCartItems([]); // Limpar o estado do carrinho
+    setCartItemsState([]); // Limpar o estado do carrinho
     localStorage.removeItem("cartItems"); // Remover o carrinho do localStorage
+  };
+
+  const loadCart = () => {
+    const storedCartItems = localStorage.getItem("cartItems");
+    if (storedCartItems) {
+      setCartItemsState(JSON.parse(storedCartItems));
+    }
+  };
+
+  const setCartItems = (items: CartItem[]) => {
+    setCartItemsState(items);
   };
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addItemToCart, removeItemFromCart, clearCart }}
+      value={{
+        cartItems,
+        addItemToCart,
+        removeItemFromCart,
+        decrementItemInCart,
+        clearCart,
+        loadCart,
+        setCartItems,
+      }}
     >
       {children}
     </CartContext.Provider>
