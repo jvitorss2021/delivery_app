@@ -63,19 +63,19 @@ const Header: React.FC = () => {
               <nav className="absolute right-0 mt-2 w-48 bg-gray-800 rounded shadow-lg z-50">
                 <ul className="flex flex-col space-y-2 p-4">
                   <li>
-                    <link href="/" className="hover:underline">
+                    <Link href="/" className="hover:underline">
                       Home
-                    </link>
+                    </Link>
                   </li>
                   <li>
-                    <link href="/products" className="hover:underline">
+                    <Link href="/products" className="hover:underline">
                       Produtos
-                    </link>
+                    </Link>
                   </li>
                   <li>
-                    <link href="/cart" className="hover:underline">
+                    <Link href="/cart" className="hover:underline">
                       Carrinho
-                    </link>
+                    </Link>
                   </li>
                   {!isLoggedIn && (
                     <li>
