@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import AuthModal from "./AuthModal";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -47,11 +49,23 @@ const Header: React.FC = () => {
                     Carrinho
                   </a>
                 </li>
+                <li>
+                  <button
+                    onClick={() => setIsAuthModalOpen(true)}
+                    className="hover:underline"
+                  >
+                    Login
+                  </button>
+                </li>
               </ul>
             </nav>
           )}
         </div>
       </div>
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </header>
   );
 };

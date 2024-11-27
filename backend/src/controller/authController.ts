@@ -22,7 +22,6 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     if (!user) {
       res.status(400).json({ message: "Usuário não encontrado" });
       return;
-      console.log(User);
     }
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
