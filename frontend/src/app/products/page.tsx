@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { api } from "../../lib/axios";
 import ProductCard from "../components/ProductCard";
 
-// Defina a interface para o tipo do produto
 interface Product {
   id: number;
   name: string;
@@ -12,7 +11,6 @@ interface Product {
 }
 
 const Products: React.FC = () => {
-  // Use a interface Product para tipar o estado products
   const [products, setProducts] = useState<Product[]>([]);
 
   const fetchProducts = async () => {
@@ -20,7 +18,6 @@ const Products: React.FC = () => {
       const response = await api.get("/products");
       // const response = await fetch("http://localhost:5000/api/products");
       const data = await response.data;
-      // Mapeie a propriedade _id para id
       const mappedData = data.map((product: Product) => ({
         id: product.id,
         name: product.name,

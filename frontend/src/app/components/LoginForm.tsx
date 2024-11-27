@@ -1,17 +1,25 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { api } from "../../lib/axios";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
 
-const LoginForm: React.FC = () => {
+interface LoginFormProps {
+  onLoginSuccess: () => void;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await api.post("/auth/login", { username, password });
       alert("Login bem-sucedido!");
+      onLoginSuccess();
+      router.push("/products");
     } catch (error) {
       console.error("Erro ao fazer login:", error);
       alert("Erro ao fazer login");
@@ -44,7 +52,7 @@ const LoginForm: React.FC = () => {
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute inset-y-0 right-0 pr-3 flex py-2 items-end text-gray-700"
+          className="absolute inset-y-0 right-0 pr-3 py-2 flex items-end text-gray-700"
         >
           {showPassword ? (
             <EyeSlashIcon className="h-5 w-5" />

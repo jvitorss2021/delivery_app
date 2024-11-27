@@ -18,6 +18,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleRegisterSuccess = () => {
+    setIsLogin(true);
+  };
+
   return (
     <div
       className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
@@ -33,10 +37,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
         <h2 className="text-2xl font-bold mb-4">
           {isLogin ? "Login" : "Registrar"}
         </h2>
-        {isLogin ? <LoginForm /> : <RegisterForm />}
+        {isLogin ? (
+          <LoginForm onLoginSuccess={onClose} />
+        ) : (
+          <RegisterForm onRegisterSuccess={handleRegisterSuccess} />
+        )}
         <button
           onClick={() => setIsLogin(!isLogin)}
-          className="mt-4 text-blue-500 hover:underline"
+          className="mt-4 text-gray-800 hover:underline"
         >
           {isLogin
             ? "Não tem uma conta? Registre-se"
