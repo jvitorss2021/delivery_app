@@ -4,8 +4,13 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 
 const Cart: React.FC = () => {
-  const { cartItems, addItemToCart, removeItemFromCart, decrementItemInCart } =
-    useCart();
+  const {
+    cartItems,
+    addItemToCart,
+    removeItemFromCart,
+    decrementItemInCart,
+    clearCart,
+  } = useCart();
 
   const total = cartItems.reduce(
     (acc, item) =>
@@ -64,6 +69,16 @@ const Cart: React.FC = () => {
           </li>
         ))}
       </ul>
+      {cartItems.length > 0 && (
+        <div className="mt-4 w-full flex justify-end">
+          <button
+            onClick={clearCart}
+            className="bg-red-950 text-white py-2 px-4 rounded hover:bg-red-900"
+          >
+            Limpar Carrinho
+          </button>
+        </div>
+      )}
       <div className="mt-8">
         <button
           onClick={addExtraFries}

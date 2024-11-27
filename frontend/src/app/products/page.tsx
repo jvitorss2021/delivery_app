@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../../lib/axios";
 import ProductCard from "../components/ProductCard";
+import CartIcon from "../components/CartIcon";
 
 interface Product {
   id: number;
@@ -44,6 +45,7 @@ const Products: React.FC = () => {
             ))}
         </div>
       </main>
+      <CartIcon />
     </div>
   );
 };

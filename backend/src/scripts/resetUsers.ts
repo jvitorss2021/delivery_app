@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { config } from "dotenv";
 import User from "../models/user";
 
-config(); // Carregar variáveis de ambiente do arquivo .env
+config();
 
 const resetUsers = async () => {
   try {

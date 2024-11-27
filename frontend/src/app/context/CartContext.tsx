@@ -13,7 +13,7 @@ interface CartContextType {
   cartItems: CartItem[];
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (id: number) => void;
-  decrementItemInCart: (id: number) => void; // Adicione a função decrementItemInCart
+  decrementItemInCart: (id: number) => void;
   clearCart: () => void;
   loadCart: () => void;
   setCartItems: (items: CartItem[]) => void;

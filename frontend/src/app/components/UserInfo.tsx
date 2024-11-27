@@ -5,7 +5,7 @@ const UserInfo: React.FC = () => {
   const [username, setUsername] = useState<string | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { clearCart } = useCart(); // Obtenha a função clearCart do contexto do carrinho
+  const { clearCart } = useCart();
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("username");
@@ -17,7 +17,7 @@ const UserInfo: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    clearCart(); // Limpar o carrinho ao deslogar
+    clearCart();
     setUsername(null);
     setIsDropdownOpen(false);
     window.location.reload();
