@@ -20,6 +20,11 @@ app.use(express.json());
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
 
+// Rota para a raiz
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
