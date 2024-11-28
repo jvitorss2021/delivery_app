@@ -10,6 +10,7 @@ export const register = async (req: Request, res: Response) => {
     await user.save();
     res.status(201).json({ message: "Usuário registrado com sucesso" });
   } catch (err) {
+    console.error("Erro ao registrar usuário:", err); // Adicione este log para depuração
     res.status(400).json({ message: "Erro ao registrar usuário", error: err });
   }
 };
@@ -33,6 +34,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     });
     res.json({ token });
   } catch (err) {
+    console.error("Erro no servidor:", err); // Adicione este log para depuração
     res.status(500).json({ message: "Erro no servidor", error: err });
   }
 };

@@ -55,7 +55,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-700"
+          className="absolute inset-y-0 right-0 pr-3 flex py-2 items-end text-gray-700"
         >
           {showPassword ? (
             <EyeSlashIcon className="h-5 w-5" />
@@ -67,7 +67,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
       {error && <p className="text-red-500 text-xs italic">{error}</p>}
       <button
         type="submit"
-        className="bg-gray-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       >
         Login
       </button>
