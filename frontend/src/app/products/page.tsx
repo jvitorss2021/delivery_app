@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { api } from "../../lib/axios";
-import ProductCard from "../components/ProductCard";
-import CartIcon from "../components/CartIcon";
+import ProductCard from "../components/cart/ProductCard";
+import CartIcon from "../components/cart/CartIcon";
 
 interface Product {
   id: number;

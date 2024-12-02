@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 
 const UserInfo: React.FC = () => {
   const [username, setUsername] = useState<string | null>(null);

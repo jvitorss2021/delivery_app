@@ -24,10 +24,10 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
+      className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out"
       onClick={handleOutsideClick}
     >
-      <div className="bg-white p-8 rounded shadow-lg w-96 relative">
+      <div className="bg-white p-8 rounded shadow-lg w-96 relative transform transition-transform duration-300 ease-in-out">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-700"

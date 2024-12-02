@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 
 const Cart: React.FC = () => {
   const {

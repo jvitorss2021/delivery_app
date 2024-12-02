@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCart } from "../context/CartContext";
+import { useCart } from "../../context/CartContext";
 import { useState, useEffect } from "react";
 
 interface ProductProps {
@@ -35,7 +35,7 @@ const ProductCard: React.FC<ProductProps> = ({ id, name, price, image }) => {
   };
 
   return (
-    <div className="border rounded shadow-md p-4">
+    <div className="border rounded shadow-md p-4 transform transition-transform duration-300 hover:scale-105">
       <div className="relative w-full h-40">
         <Image
           src={`/images/${image}`}
@@ -52,7 +52,7 @@ const ProductCard: React.FC<ProductProps> = ({ id, name, price, image }) => {
       <div className="flex items-center mt-2">
         <button
           type="button"
-          className="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-600"
+          className="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 ease-in-out"
           onClick={handleAddToCart}
         >
           Adicionar ao Carrinho
@@ -61,7 +61,7 @@ const ProductCard: React.FC<ProductProps> = ({ id, name, price, image }) => {
           <div className="flex items-center ml-2">
             <button
               type="button"
-              className="bg-red-900 text-white py-1 px-2 rounded hover:bg-red-700"
+              className="bg-red-900 text-white py-1 px-2 rounded hover:bg-red-700 transition duration-300 ease-in-out"
               onClick={handleRemoveFromCart}
             >
               -
