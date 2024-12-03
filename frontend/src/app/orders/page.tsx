@@ -24,8 +24,13 @@ const Orders: React.FC = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("/api/orders");
-      setOrders(response.data);
+      const response = await axios.get("/orders");
+      console.log(response.data);
+      if (Array.isArray(response.data)) {
+        setOrders(response.data);
+      } else {
+        console.error("A resposta da API não é um array:", response.data);
+      }
     } catch (error) {
       console.error("Erro ao buscar pedidos:", error);
     }
@@ -59,7 +64,9 @@ const Orders: React.FC = () => {
                       <Image
                         src={`/images/${item.image}`}
                         alt={item.name}
-                        className="w-12 h-12 rounded"
+                        width={50}
+                        height={50}
+                        className="rounded"
                       />
                       <div className="ml-4">
                         <h3 className="text-lg font-bold">{item.name}</h3>

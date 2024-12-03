@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import Image from "next/image";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Cart: React.FC = () => {
   const {
@@ -16,6 +17,8 @@ const Cart: React.FC = () => {
     setPaymentMethod,
   } = useCart();
   const [deliveryTime, setDeliveryTime] = useState<Date | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const total = cartItems.reduce(
     (acc, item) =>
@@ -46,12 +49,17 @@ const Cart: React.FC = () => {
   };
 
   const handlePlaceOrder = async () => {
+    if (!paymentMethod) {
+      setError("Por favor, selecione uma forma de pagamento.");
+      return;
+    }
+
     const estimatedDeliveryTime = new Date();
     estimatedDeliveryTime.setMinutes(estimatedDeliveryTime.getMinutes() + 45);
     setDeliveryTime(estimatedDeliveryTime);
 
     try {
-      const response = await axios.post("/api/orders", {
+      const response = await axios.post("/orders", {
         items: cartItems,
         total,
         paymentMethod,
@@ -59,6 +67,7 @@ const Cart: React.FC = () => {
       });
       console.log("Pedido criado com sucesso:", response.data);
       clearCart();
+      router.push("/orders");
     } catch (error) {
       console.error("Erro ao criar pedido:", error);
     }
@@ -146,6 +155,7 @@ const Cart: React.FC = () => {
             <option value="Cartão de Débito">Cartão de Débito</option>
             <option value="Pix">Pix</option>
           </select>
+          {error && <p className="text-red-500 mt-2">{error}</p>}
         </div>
         <button
           onClick={handlePlaceOrder}
