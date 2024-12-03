@@ -25,7 +25,7 @@ const ProductCard: React.FC<ProductProps> = ({ id, name, price, image }) => {
   }, [cartItems, id]);
 
   const handleAddToCart = () => {
-    addItemToCart({ id, name, price, quantity: 1 });
+    addItemToCart({ id, name, price, image, quantity: 1 });
   };
 
   const handleRemoveFromCart = () => {

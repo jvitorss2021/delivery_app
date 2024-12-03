@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useCart } from "../../context/CartContext";
+import Image from "next/image";
 
 const Cart: React.FC = () => {
   const {
@@ -26,6 +27,7 @@ const Cart: React.FC = () => {
       name: "Batata Frita",
       price: "R$ 12,00",
       quantity: 1,
+      image: "fries.webp",
     });
   };
 
@@ -35,6 +37,7 @@ const Cart: React.FC = () => {
       name: "Suco Natural",
       price: "R$ 8,00",
       quantity: 1,
+      image: "juice.webp",
     });
   };
 
@@ -47,9 +50,18 @@ const Cart: React.FC = () => {
             key={item.id}
             className="flex justify-between items-center border-b pb-2"
           >
-            <div>
-              <h2 className="text-lg font-bold">{item.name}</h2>
-              <p className="text-gray-400">Quantidade: {item.quantity}</p>
+            <div className="flex items-center">
+              <Image
+                src={`/images/${item.image}`}
+                alt={item.name}
+                width={50}
+                height={50}
+                className="rounded"
+              />
+              <div className="ml-4">
+                <h2 className="text-lg font-bold">{item.name}</h2>
+                <p className="text-gray-400">Quantidade: {item.quantity}</p>
+              </div>
             </div>
             <div className="flex items-center space-x-4">
               <p className="text-gray-400">{item.price}</p>
