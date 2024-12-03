@@ -27,7 +27,7 @@ const Cart: React.FC = () => {
 
   const addExtraFries = () => {
     addItemToCart({
-      id: 2,
+      id: 4,
       name: "Batata Frita",
       price: "R$ 12,00",
       quantity: 1,
@@ -35,13 +35,13 @@ const Cart: React.FC = () => {
     });
   };
 
-  const addExtraSuco = () => {
+  const addExtraRefri = () => {
     addItemToCart({
-      id: 8,
-      name: "Suco Natural",
-      price: "R$ 8,00",
+      id: 15,
+      name: "Refrigerante lata",
+      price: "R$ 6,00",
       quantity: 1,
-      image: "juice.webp",
+      image: "refri.webp",
     });
   };
 
@@ -124,10 +124,10 @@ const Cart: React.FC = () => {
       </div>
       <div className="mt-8">
         <button
-          onClick={addExtraSuco}
+          onClick={addExtraRefri}
           className="bg-green-950 text-white py-2 px-4 rounded hover:bg-green-900"
         >
-          Adicionar Suco Natural
+          Adicionar Refrigerante
         </button>
       </div>
       <div className="mt-8">
