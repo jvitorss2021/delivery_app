@@ -38,7 +38,7 @@ const products = [
     name: "Pizza de burrata",
     price: "R$ 45,00",
     image: "pizza.webp",
-    categort: "Pizzas",
+    category: "Pizzas",
   },
   {
     id: 6,
