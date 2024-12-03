@@ -13,6 +13,8 @@ interface CartItem {
 
 interface CartContextType {
   cartItems: CartItem[];
+  paymentMethod: string;
+  setPaymentMethod: (method: string) => void;
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (id: number) => void;
   decrementItemInCart: (id: number) => void;
@@ -27,19 +29,25 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [cartItems, setCartItemsState] = useState<CartItem[]>([]);
+  const [paymentMethod, setPaymentMethodState] = useState<string>("");
 
   // Carregar o estado do carrinho do localStorage quando o componente é montado
   useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems");
+    const storedPaymentMethod = localStorage.getItem("paymentMethod");
     if (storedCartItems) {
       setCartItemsState(JSON.parse(storedCartItems));
+    }
+    if (storedPaymentMethod) {
+      setPaymentMethodState(storedPaymentMethod);
     }
   }, []);
 
   // Salvar o estado do carrinho no localStorage sempre que ele mudar
   useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
+    localStorage.setItem("paymentMethod", paymentMethod);
+  }, [cartItems, paymentMethod]);
 
   const addItemToCart = (item: CartItem) => {
     setCartItemsState((prev) => {
@@ -83,6 +91,10 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
+  const setPaymentMethod = (method: string) => {
+    setPaymentMethodState(method);
+  };
+
   const setCartItems = (items: CartItem[]) => {
     setCartItemsState(items);
   };
@@ -91,6 +103,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     <CartContext.Provider
       value={{
         cartItems,
+        paymentMethod,
+        setPaymentMethod,
         addItemToCart,
         removeItemFromCart,
         decrementItemInCart,

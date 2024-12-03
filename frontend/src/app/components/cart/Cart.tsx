@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import Image from "next/image";
+import axios from "axios";
 
 const Cart: React.FC = () => {
   const {
@@ -11,7 +12,10 @@ const Cart: React.FC = () => {
     removeItemFromCart,
     decrementItemInCart,
     clearCart,
+    paymentMethod,
+    setPaymentMethod,
   } = useCart();
+  const [deliveryTime, setDeliveryTime] = useState<Date | null>(null);
 
   const total = cartItems.reduce(
     (acc, item) =>
@@ -39,6 +43,25 @@ const Cart: React.FC = () => {
       quantity: 1,
       image: "juice.webp",
     });
+  };
+
+  const handlePlaceOrder = async () => {
+    const estimatedDeliveryTime = new Date();
+    estimatedDeliveryTime.setMinutes(estimatedDeliveryTime.getMinutes() + 45);
+    setDeliveryTime(estimatedDeliveryTime);
+
+    try {
+      const response = await axios.post("/api/orders", {
+        items: cartItems,
+        total,
+        paymentMethod,
+        deliveryTime: estimatedDeliveryTime,
+      });
+      console.log("Pedido criado com sucesso:", response.data);
+      clearCart();
+    } catch (error) {
+      console.error("Erro ao criar pedido:", error);
+    }
   };
 
   return (
@@ -109,9 +132,32 @@ const Cart: React.FC = () => {
       </div>
       <div className="mt-8">
         <h2 className="text-xl font-bold">Total: R$ {total.toFixed(2)}</h2>
-        <button className="bg-blue-950 text-white py-2 px-4 rounded mt-2 hover:bg-blue-900">
+        <div className="mt-4">
+          <label className="block mb-2 text-lg font-bold">
+            Forma de Pagamento
+          </label>
+          <select
+            value={paymentMethod}
+            onChange={(e) => setPaymentMethod(e.target.value)}
+            className="bg-gray-800 text-white py-2 px-4 rounded"
+          >
+            <option value="">Selecione</option>
+            <option value="Cartão de Crédito">Cartão de Crédito</option>
+            <option value="Cartão de Débito">Cartão de Débito</option>
+            <option value="Pix">Pix</option>
+          </select>
+        </div>
+        <button
+          onClick={handlePlaceOrder}
+          className="bg-blue-950 text-white py-2 px-4 rounded mt-2 hover:bg-blue-900"
+        >
           Finalizar Compra
         </button>
+        {deliveryTime && (
+          <p className="mt-4 text-lg font-bold">
+            Horário previsto para entrega: {deliveryTime.toLocaleTimeString()}
+          </p>
+        )}
       </div>
     </div>
   );

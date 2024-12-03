@@ -73,7 +73,7 @@ const Header: React.FC = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/products" className="hover:underline">
+                    <Link href="/orders" className="hover:underline">
                       Pedidos
                     </Link>
                   </li>

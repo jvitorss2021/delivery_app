@@ -3,6 +3,7 @@ import cors from "cors";
 import connectDB from "./config/db";
 import productRoutes from "./routes/product";
 import authRoutes from "./routes/auth";
+import orderRoutes from "./routes/order"; // Importe a rota de pedidos
 import { config } from "dotenv";
 
 config(); // Carregar variáveis de ambiente do arquivo .env
@@ -19,6 +20,7 @@ app.use(express.json());
 // Rotas
 app.use("/products", productRoutes);
 app.use("/auth", authRoutes);
+app.use("/orders", orderRoutes); // Adicione a rota de pedidos
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
