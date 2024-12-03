@@ -68,13 +68,13 @@ const Header: React.FC = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/products" className="hover:underline">
-                      Produtos
+                    <Link href="/cart" className="hover:underline">
+                      Carrinho
                     </Link>
                   </li>
                   <li>
-                    <Link href="/cart" className="hover:underline">
-                      Carrinho
+                    <Link href="/products" className="hover:underline">
+                      Pedidos
                     </Link>
                   </li>
                   {!isLoggedIn && (
