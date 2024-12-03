@@ -4,6 +4,7 @@ import Image from "next/image";
 import { api } from "../lib/axios";
 import ProductCard from "../app/components/cart/ProductCard";
 import CartIcon from "../app/components/cart/CartIcon";
+import { motion } from "framer-motion";
 
 interface Product {
   id: number;
@@ -21,14 +22,7 @@ const Home: React.FC = () => {
     try {
       const response = await api.get("/products");
       const data = await response.data;
-      const mappedData = data.map((product: Product) => ({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        category: product.category,
-      }));
-      setProducts(mappedData);
+      setProducts(data);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
     }
@@ -54,31 +48,27 @@ const Home: React.FC = () => {
         />
       </div>
       <main className="container mx-auto py-8 mb-8 bg-opacity-75 rounded-lg shadow-lg">
-        <div className="flex justify-around mb-4">
-          <button
-            className="text-xl font-bold"
-            onClick={() => setSelectedCategory("Pizzas")}
-          >
-            Pizzas
-          </button>
-          <button
-            className="text-xl font-bold"
-            onClick={() => setSelectedCategory("Hamburguer")}
-          >
-            Hamburguer
-          </button>
-          <button
-            className="text-xl font-bold"
-            onClick={() => setSelectedCategory("Sushi")}
-          >
-            Sushi
-          </button>
-          <button
-            className="text-xl font-bold"
-            onClick={() => setSelectedCategory("Bebidas")}
-          >
-            Bebidas
-          </button>
+        <div className="flex justify-center space-x-8 mb-4">
+          {["Pizzas", "Hamburguer", "Sushi", "Bebidas"].map((category) => (
+            <button
+              key={category}
+              className={`text-xl font-bold relative ${
+                selectedCategory === category
+                  ? "text-blue-600"
+                  : "text-gray-600"
+              }`}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+              {selectedCategory === category && (
+                <motion.span
+                  layoutId="underline"
+                  className="absolute left-0 right-0 bottom-0 h-1 bg-blue-600"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              )}
+            </button>
+          ))}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {filteredProducts.length > 0 &&

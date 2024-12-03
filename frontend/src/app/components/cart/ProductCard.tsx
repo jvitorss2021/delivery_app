@@ -12,7 +12,7 @@ interface ProductProps {
 }
 
 const ProductCard: React.FC<ProductProps> = ({ id, name, price, image }) => {
-  const { addItemToCart, removeItemFromCart, cartItems } = useCart();
+  const { addItemToCart, decrementItemInCart, cartItems } = useCart();
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const ProductCard: React.FC<ProductProps> = ({ id, name, price, image }) => {
 
   const handleRemoveFromCart = () => {
     if (quantity > 0) {
-      removeItemFromCart(id);
+      decrementItemInCart(id);
     }
   };
 
