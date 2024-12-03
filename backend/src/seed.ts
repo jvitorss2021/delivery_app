@@ -16,7 +16,7 @@ const products = [
     id: 2,
     name: "Hamburguer duplo cheddar",
     price: "R$ 26,00",
-    image: "burger1.webp",
+    image: "burger.webp",
     category: "Hamburguer",
   },
   {
@@ -90,7 +90,7 @@ const products = [
     category: "Bebidas",
   },
   {
-    id: 12,
+    id: 13,
     name: "Suco natural de Maracujá",
     price: "R$ 9,00",
     image: "juice2.webp",
