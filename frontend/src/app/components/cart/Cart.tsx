@@ -57,12 +57,21 @@ const Cart: React.FC = () => {
     estimatedDeliveryTime.setMinutes(estimatedDeliveryTime.getMinutes() + 45);
 
     try {
-      const response = await api.post("/orders", {
-        items: cartItems,
-        total,
-        paymentMethod,
-        deliveryTime: estimatedDeliveryTime,
-      });
+      const token = localStorage.getItem("token");
+      const response = await api.post(
+        "/orders",
+        {
+          items: cartItems,
+          total,
+          paymentMethod,
+          deliveryTime: estimatedDeliveryTime,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       console.log("Pedido criado com sucesso:", response.data);
       clearCart();
       router.push("/orders");

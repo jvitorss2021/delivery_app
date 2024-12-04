@@ -24,7 +24,12 @@ const Orders: React.FC = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await api.get("/orders");
+      const token = localStorage.getItem("token");
+      const response = await api.get("/orders", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       console.log(response.data);
       if (Array.isArray(response.data)) {
         setOrders(response.data);
