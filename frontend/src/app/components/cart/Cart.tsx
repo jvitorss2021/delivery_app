@@ -16,7 +16,6 @@ const Cart: React.FC = () => {
     paymentMethod,
     setPaymentMethod,
   } = useCart();
-  const [deliveryTime, setDeliveryTime] = useState<Date | null>(null);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
@@ -56,7 +55,6 @@ const Cart: React.FC = () => {
 
     const estimatedDeliveryTime = new Date();
     estimatedDeliveryTime.setMinutes(estimatedDeliveryTime.getMinutes() + 45);
-    setDeliveryTime(estimatedDeliveryTime);
 
     try {
       const response = await axios.post("/orders", {
@@ -67,7 +65,7 @@ const Cart: React.FC = () => {
       });
       console.log("Pedido criado com sucesso:", response.data);
       clearCart();
-      router.push("/orders");
+      router.push("/orders"); // Redirecionar para a página de pedidos
     } catch (error) {
       console.error("Erro ao criar pedido:", error);
     }
@@ -163,11 +161,6 @@ const Cart: React.FC = () => {
         >
           Finalizar Compra
         </button>
-        {deliveryTime && (
-          <p className="mt-4 text-lg font-bold">
-            Horário previsto para entrega: {deliveryTime.toLocaleTimeString()}
-          </p>
-        )}
       </div>
     </div>
   );

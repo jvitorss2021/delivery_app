@@ -48,7 +48,7 @@ const UserInfo: React.FC = () => {
     <div className="relative" ref={dropdownRef}>
       <motion.button
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-        className="text-white font-semibold bg-blue-600 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors"
+        className="text-white font-semibold bg-gray-900 px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
