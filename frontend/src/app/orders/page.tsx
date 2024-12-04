@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { api } from "../../lib/axios";
 import Image from "next/image";
 
 interface Order {
@@ -24,7 +24,7 @@ const Orders: React.FC = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("/orders");
+      const response = await api.get("/orders");
       console.log(response.data);
       if (Array.isArray(response.data)) {
         setOrders(response.data);

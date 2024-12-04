@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import Image from "next/image";
-import axios from "axios";
+import { api } from "../../../lib/axios"; // Use o Axios configurado
 import { useRouter } from "next/navigation";
 
 const Cart: React.FC = () => {
@@ -57,7 +57,7 @@ const Cart: React.FC = () => {
     estimatedDeliveryTime.setMinutes(estimatedDeliveryTime.getMinutes() + 45);
 
     try {
-      const response = await axios.post("/orders", {
+      const response = await api.post("/orders", {
         items: cartItems,
         total,
         paymentMethod,
@@ -65,7 +65,7 @@ const Cart: React.FC = () => {
       });
       console.log("Pedido criado com sucesso:", response.data);
       clearCart();
-      router.push("/orders"); // Redirecionar para a página de pedidos
+      router.push("/orders");
     } catch (error) {
       console.error("Erro ao criar pedido:", error);
     }
