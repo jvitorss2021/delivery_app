@@ -5,6 +5,7 @@ import { api } from "../lib/axios";
 import ProductCard from "../app/components/cart/ProductCard";
 import CartIcon from "../app/components/cart/CartIcon";
 import { motion } from "framer-motion";
+import Button from "../app/components/common/Button";
 
 interface Product {
   id: number;
@@ -50,7 +51,7 @@ const Home: React.FC = () => {
       <main className="container mx-auto py-8 mb-8 bg-opacity-75 rounded-lg shadow-lg">
         <div className="flex justify-center space-x-8 mb-4">
           {["Pizzas", "Hamburguer", "Sushi", "Bebidas"].map((category) => (
-            <button
+            <Button
               key={category}
               className={`text-xl font-bold relative ${
                 selectedCategory === category
@@ -67,7 +68,7 @@ const Home: React.FC = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
-            </button>
+            </Button>
           ))}
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">

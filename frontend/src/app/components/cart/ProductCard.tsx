@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCart } from "../../context/CartContext";
 import { useState, useEffect } from "react";
+import Button from "../../components/common/Button"; // Importe o componente de botão
 
 interface ProductProps {
   id: number;
@@ -50,22 +51,20 @@ const ProductCard: React.FC<ProductProps> = ({ id, name, price, image }) => {
       <h2 className="text-lg font-bold mt-2">{name}</h2>
       <p className="text-gray-600">{price}</p>
       <div className="flex items-center mt-2">
-        <button
-          type="button"
-          className="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 ease-in-out"
+        <Button
           onClick={handleAddToCart}
+          className="bg-blue-900 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 ease-in-out"
         >
           Adicionar ao Carrinho
-        </button>
+        </Button>
         {quantity > 0 && (
           <div className="flex items-center ml-2">
-            <button
-              type="button"
-              className="bg-red-900 text-white py-1 px-2 rounded hover:bg-red-700 transition duration-300 ease-in-out"
+            <Button
               onClick={handleRemoveFromCart}
+              className="bg-red-900 text-white py-1 px-2 rounded hover:bg-red-700 transition duration-300 ease-in-out"
             >
               -
-            </button>
+            </Button>
             <span className="ml-2 text-gray-700 font-bold">{quantity}</span>
           </div>
         )}

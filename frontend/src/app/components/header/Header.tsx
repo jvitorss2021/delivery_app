@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import AuthModal from "./AuthModal";
 import UserInfo from "./UserInfo";
+import Button from "../common/Button";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,42 +56,50 @@ const Header: React.FC = () => {
         <div className="flex items-center space-x-4">
           <UserInfo />
           <div className="relative" ref={menuRef}>
-            <button className="flex flex-col space-y-1.5" onClick={toggleMenu}>
+            <Button className="flex flex-col space-y-1.5" onClick={toggleMenu}>
               <span className="block w-6 h-0.5 bg-white"></span>
               <span className="block w-6 h-0.5 bg-white"></span>
               <span className="block w-6 h-0.5 bg-white"></span>
-            </button>
-            {isMenuOpen && (
-              <nav className="absolute right-0 mt-2 w-48 bg-gray-800 rounded shadow-lg z-50">
-                <ul className="flex flex-col space-y-2 p-4">
-                  <li>
-                    <Link href="/" className="hover:underline">
-                      Home
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/cart" className="hover:underline">
-                      Carrinho
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/orders" className="hover:underline">
-                      Pedidos
-                    </Link>
-                  </li>
-                  {!isLoggedIn && (
+            </Button>
+            <AnimatePresence>
+              {isMenuOpen && (
+                <motion.nav
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute right-0 mt-2 w-48 bg-gray-800 rounded shadow-lg z-50"
+                >
+                  <ul className="flex flex-col space-y-2 p-4">
                     <li>
-                      <button
-                        onClick={() => setIsAuthModalOpen(true)}
-                        className="hover:underline"
-                      >
-                        Login
-                      </button>
+                      <Link href="/" className="hover:underline">
+                        Home
+                      </Link>
                     </li>
-                  )}
-                </ul>
-              </nav>
-            )}
+                    <li>
+                      <Link href="/cart" className="hover:underline">
+                        Carrinho
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/orders" className="hover:underline">
+                        Pedidos
+                      </Link>
+                    </li>
+                    {!isLoggedIn && (
+                      <li>
+                        <button
+                          onClick={() => setIsAuthModalOpen(true)}
+                          className="hover:underline"
+                        >
+                          Login
+                        </button>
+                      </li>
+                    )}
+                  </ul>
+                </motion.nav>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </div>

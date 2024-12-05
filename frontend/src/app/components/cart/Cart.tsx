@@ -5,6 +5,7 @@ import { useCart } from "../../context/CartContext";
 import Image from "next/image";
 import { api } from "../../../lib/axios"; // Use o Axios configurado
 import { useRouter } from "next/navigation";
+import Button from "../../components/common/Button"; // Importe o componente de botão
 
 const Cart: React.FC = () => {
   const {
@@ -111,47 +112,47 @@ const Cart: React.FC = () => {
             </div>
             <div className="flex items-center space-x-4">
               <p className="text-gray-400">{item.price}</p>
-              <button
+              <Button
                 onClick={() => decrementItemInCart(item.id)}
                 className="bg-gray-800 text-white py-1 px-2 rounded hover:bg-red-900"
               >
                 -
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => removeItemFromCart(item.id)}
                 className="bg-red-950 text-white py-1 px-2 rounded hover:bg-red-900"
               >
                 Remover
-              </button>
+              </Button>
             </div>
           </li>
         ))}
       </ul>
       {cartItems.length > 0 && (
         <div className="mt-4 w-full flex justify-end">
-          <button
+          <Button
             onClick={clearCart}
             className="bg-red-950 text-white py-1 px-3 hover:bg-red-900"
           >
             Limpar Carrinho
-          </button>
+          </Button>
         </div>
       )}
       <div className="mt-4">
-        <button
+        <Button
           onClick={addExtraFries}
           className="bg-green-950 text-white py-2 px-4 hover:bg-green-900 w-48"
         >
           Adicionar Batata Frita
-        </button>
+        </Button>
       </div>
       <div className="mt-4">
-        <button
+        <Button
           onClick={addExtraRefri}
           className="bg-green-950 text-white py-2 px-4 rounded hover:bg-green-900 w-48"
         >
           Adicionar Refrigerante
-        </button>
+        </Button>
       </div>
       <div className="mt-8">
         <h2 className="text-xl font-bold">Total: R$ {total.toFixed(2)}</h2>
@@ -171,12 +172,12 @@ const Cart: React.FC = () => {
           </select>
           {error && <p className="text-red-500 mt-2">{error}</p>}
         </div>
-        <button
+        <Button
           onClick={handlePlaceOrder}
           className="bg-blue-950 text-white py-2 px-4 rounded mt-2 hover:bg-blue-900 w-48"
         >
           Finalizar Compra
-        </button>
+        </Button>
       </div>
     </div>
   );
