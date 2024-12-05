@@ -4,6 +4,7 @@ import Image from "next/image";
 import { api } from "../lib/axios";
 import ProductCard from "../app/components/cart/ProductCard";
 import CartIcon from "../app/components/cart/CartIcon";
+import CartDrawer from "../app/components/cart/CartDrawer";
 import { motion } from "framer-motion";
 import Button from "../app/components/common/Button";
 
@@ -18,6 +19,7 @@ interface Product {
 const Home: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
 
   const fetchProducts = async () => {
     try {
@@ -78,7 +80,11 @@ const Home: React.FC = () => {
             ))}
         </div>
       </main>
-      <CartIcon />
+      <CartIcon onClick={() => setIsCartDrawerOpen(true)} />
+      <CartDrawer
+        isOpen={isCartDrawerOpen}
+        onClose={() => setIsCartDrawerOpen(false)}
+      />
     </div>
   );
 };
