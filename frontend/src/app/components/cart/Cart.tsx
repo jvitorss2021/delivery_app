@@ -48,6 +48,13 @@ const Cart: React.FC = () => {
   };
 
   const handlePlaceOrder = async () => {
+    if (cartItems.length === 0) {
+      setError(
+        "O carrinho está vazio. Adicione itens ao carrinho antes de finalizar a compra."
+      );
+      return;
+    }
+
     if (!paymentMethod) {
       setError("Por favor, selecione uma forma de pagamento.");
       return;
@@ -124,24 +131,24 @@ const Cart: React.FC = () => {
         <div className="mt-4 w-full flex justify-end">
           <button
             onClick={clearCart}
-            className="bg-red-950 text-white py-2 px-4 rounded hover:bg-red-900"
+            className="bg-red-950 text-white py-1 px-3 hover:bg-red-900"
           >
             Limpar Carrinho
           </button>
         </div>
       )}
-      <div className="mt-8">
+      <div className="mt-4">
         <button
           onClick={addExtraFries}
-          className="bg-green-950 text-white py-2 px-4 rounded hover:bg-green-900"
+          className="bg-green-950 text-white py-2 px-4 hover:bg-green-900 w-48"
         >
           Adicionar Batata Frita
         </button>
       </div>
-      <div className="mt-8">
+      <div className="mt-4">
         <button
           onClick={addExtraRefri}
-          className="bg-green-950 text-white py-2 px-4 rounded hover:bg-green-900"
+          className="bg-green-950 text-white py-2 px-4 rounded hover:bg-green-900 w-48"
         >
           Adicionar Refrigerante
         </button>
@@ -155,7 +162,7 @@ const Cart: React.FC = () => {
           <select
             value={paymentMethod}
             onChange={(e) => setPaymentMethod(e.target.value)}
-            className="bg-gray-800 text-white py-2 px-4 rounded"
+            className="bg-gray-800 text-white py-2 px-4 rounded w-48"
           >
             <option value="">Selecione</option>
             <option value="Cartão de Crédito">Cartão de Crédito</option>
@@ -166,7 +173,7 @@ const Cart: React.FC = () => {
         </div>
         <button
           onClick={handlePlaceOrder}
-          className="bg-blue-950 text-white py-2 px-4 rounded mt-2 hover:bg-blue-900"
+          className="bg-blue-950 text-white py-2 px-4 rounded mt-2 hover:bg-blue-900 w-48"
         >
           Finalizar Compra
         </button>
