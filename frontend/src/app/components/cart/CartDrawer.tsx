@@ -43,12 +43,6 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
           <div className="p-4 flex flex-col h-full">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-2xl font-bold">Carrinho</h2>
-              <Button
-                onClick={onClose}
-                className="text-gray-700 hover:text-gray-100"
-              >
-                &times;
-              </Button>
             </div>
             <ul className="flex-grow overflow-y-auto space-y-4">
               {cartItems.map((item) => (
@@ -90,36 +84,42 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
               ))}
             </ul>
             <div className="mt-4">
-              <h2 className="text-xl font-bold">
+              <h2 className="text-gray-300 font-bold">
                 Total: R$ {total.toFixed(2)}
               </h2>
-              <div className="mt-4">
-                <label className="block mb-2 text-lg font-bold">
-                  Forma de Pagamento
-                </label>
-                <select
-                  value={paymentMethod}
-                  onChange={(e) => setPaymentMethod(e.target.value)}
-                  className="bg-gray-800 text-white py-2 px-4 rounded w-full"
-                >
-                  <option value="">Selecione</option>
-                  <option value="Cartão de Crédito">Cartão de Crédito</option>
-                  <option value="Cartão de Débito">Cartão de Débito</option>
-                  <option value="Pix">Pix</option>
-                </select>
+
+              <div className="flex flex-col space-y-4">
+                <div className="flex justify-between items-center">
+                  <label className="text-gray-300 font-bold mr-2 w-1/2">
+                    Forma de Pagamento:
+                  </label>
+                  <select
+                    value={paymentMethod}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                    className="bg-gray-800 text-white py-2 px-4 rounded w-1/2 ml-2"
+                  >
+                    <option value="">Selecione</option>
+                    <option value="Cartão de Crédito">Cartão de Crédito</option>
+                    <option value="Cartão de Débito">Cartão de Débito</option>
+                    <option value="Pix">Pix</option>
+                  </select>
+                </div>
+                <div className="flex justify-between mt-4">
+                  <Button
+                    onClick={clearCart}
+                    className="bg-red-950 text-white py-2 px-4 rounded hover:bg-red-900 w-1/2 mr-2"
+                  >
+                    Limpar Carrinho
+                  </Button>
+                  <Button
+                    type="finalize"
+                    className="bg-blue-950 text-white py-2 px-4 rounded hover:bg-blue-900 w-1/2 ml-2"
+                    onClick={onClose}
+                  >
+                    Finalizar Compra
+                  </Button>
+                </div>
               </div>
-              <Button
-                onClick={clearCart}
-                className="bg-red-950 text-white py-2 px-4 rounded hover:bg-red-900 w-full mt-4"
-              >
-                Limpar Carrinho
-              </Button>
-              <Button
-                onClick={onClose}
-                className="bg-blue-950 text-white py-2 px-4 rounded hover:bg-blue-900 w-full mt-4"
-              >
-                Finalizar Compra
-              </Button>
             </div>
           </div>
         </motion.div>

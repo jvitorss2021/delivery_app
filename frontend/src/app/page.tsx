@@ -80,7 +80,10 @@ const Home: React.FC = () => {
             ))}
         </div>
       </main>
-      <CartIcon onClick={() => setIsCartDrawerOpen(true)} />
+      <CartIcon
+        onClick={() => setIsCartDrawerOpen(!isCartDrawerOpen)}
+        isDrawerOpen={isCartDrawerOpen}
+      />
       <CartDrawer
         isOpen={isCartDrawerOpen}
         onClose={() => setIsCartDrawerOpen(false)}

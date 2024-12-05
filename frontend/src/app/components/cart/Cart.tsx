@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import Image from "next/image";
-import { api } from "../../../lib/axios"; // Use o Axios configurado
-import { useRouter } from "next/navigation";
 import Button from "../../components/common/Button"; // Importe o componente de botão
 
 const Cart: React.FC = () => {
@@ -17,8 +15,7 @@ const Cart: React.FC = () => {
     paymentMethod,
     setPaymentMethod,
   } = useCart();
-  const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  const [error] = useState<string | null>(null);
 
   const total = cartItems.reduce(
     (acc, item) =>
@@ -46,46 +43,6 @@ const Cart: React.FC = () => {
       quantity: 1,
       image: "refri.webp",
     });
-  };
-
-  const handlePlaceOrder = async () => {
-    if (cartItems.length === 0) {
-      setError(
-        "O carrinho está vazio. Adicione itens ao carrinho antes de finalizar a compra."
-      );
-      return;
-    }
-
-    if (!paymentMethod) {
-      setError("Por favor, selecione uma forma de pagamento.");
-      return;
-    }
-
-    const estimatedDeliveryTime = new Date();
-    estimatedDeliveryTime.setMinutes(estimatedDeliveryTime.getMinutes() + 45);
-
-    try {
-      const token = localStorage.getItem("token");
-      const response = await api.post(
-        "/orders",
-        {
-          items: cartItems,
-          total,
-          paymentMethod,
-          deliveryTime: estimatedDeliveryTime,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      console.log("Pedido criado com sucesso:", response.data);
-      clearCart();
-      router.push("/orders");
-    } catch (error) {
-      console.error("Erro ao criar pedido:", error);
-    }
   };
 
   return (
@@ -173,7 +130,7 @@ const Cart: React.FC = () => {
           {error && <p className="text-red-500 mt-2">{error}</p>}
         </div>
         <Button
-          onClick={handlePlaceOrder}
+          type="finalize"
           className="bg-blue-950 text-white py-2 px-4 rounded mt-2 hover:bg-blue-900 w-48"
         >
           Finalizar Compra
