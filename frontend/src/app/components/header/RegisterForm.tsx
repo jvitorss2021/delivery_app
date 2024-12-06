@@ -12,20 +12,24 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegisterSuccess }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (password.length < 6) {
+      setError("A senha deve ter no mínimo 6 caracteres.");
+      return;
+    }
     if (password !== confirmPassword) {
-      alert("As senhas não correspondem");
+      setError("As senhas não correspondem.");
       return;
     }
     try {
       await api.post("/auth/register", { username, password });
-      alert("Registro bem-sucedido!");
-      onRegisterSuccess();
+      onRegisterSuccess(); // Chama a função de sucesso para mudar para a tela de login
     } catch (error) {
       console.error("Erro ao registrar:", error);
-      alert("Erro ao registrar");
+      setError("Erro ao registrar.");
     }
   };
 
@@ -86,6 +90,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegisterSuccess }) => {
           )}
         </button>
       </div>
+      {error && <p className="text-red-500 text-xs italic">{error}</p>}
       <button
         type="submit"
         className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
