@@ -55,6 +55,14 @@ const Header: React.FC = () => {
         </div>
         <div className="flex items-center space-x-4">
           <UserInfo />
+          {!isLoggedIn && (
+            <Button
+              onClick={() => setIsAuthModalOpen(true)}
+              className="bg-transparent border border-white text-white py-0.5 px-2 rounded-full hover:bg-gray-200 hover:text-gray-950 transition-colors duration-500"
+            >
+              Login
+            </Button>
+          )}
           <div className="relative" ref={menuRef}>
             <Button className="flex flex-col space-y-1.5" onClick={toggleMenu}>
               <span className="block w-6 h-0.5 bg-white"></span>
@@ -86,16 +94,6 @@ const Header: React.FC = () => {
                         Pedidos
                       </Link>
                     </li>
-                    {!isLoggedIn && (
-                      <li>
-                        <button
-                          onClick={() => setIsAuthModalOpen(true)}
-                          className="hover:underline"
-                        >
-                          Login
-                        </button>
-                      </li>
-                    )}
                   </ul>
                 </motion.nav>
               )}
